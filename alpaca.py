@@ -57,7 +57,7 @@ print('Overstated 10%: ')
 print(overstated_ten_percent)
 
 # long understated earnings
-for long_stock in understated_ten_percent:
+for long_stock, diff in understated_ten_percent:
     qty = 1
     side = 'buy'
     try:
@@ -67,11 +67,11 @@ for long_stock in understated_ten_percent:
         print("Order of | " + str(qty) + " " + long_stock + " " + side + " | did not go through.")
 
 # short overstated earnings
-for short_stock in overstated_ten_percent:
+for short_stock, diff in overstated_ten_percent:
     qty = 1
     side = 'sell'
     try:
-        api.submit_order(long_stock, qty, side, "market", "day")
-        print("Market order of | " + str(qty) + " " + long_stock + " " + side + " | completed.")
+        api.submit_order(short_stock, qty, side, "market", "day")
+        print("Market order of | " + str(qty) + " " + short_stock + " " + side + " | completed.")
     except:
-        print("Order of | " + str(qty) + " " + long_stock + " " + side + " | did not go through.")
+        print("Order of | " + str(qty) + " " + short_stock + " " + side + " | did not go through.")
